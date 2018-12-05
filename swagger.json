@@ -1,0 +1,162 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Phonebook Application API",
+      "description": "Phonebook Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Phonebooks",
+        "description": "API for Phonebooks in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/phonebooks": {
+        "post": {
+          "tags": [
+            "Phonebooks"
+          ],
+          "description": "Create new phonebook in system",
+          "parameters": [
+            {
+              "name": "phonebook",
+              "in": "body",
+              "description": "phonebook that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Phonebook"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New phonebook is created",
+              "schema": {
+                "$ref": "#/definitions/Phonebook"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Phonebooks"
+          ],
+          "summary": "Get all phonebooks in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      },
+      "/phonebooks/{number}": {
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "description": "number of phonebook that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Phonebooks"
+          ],
+          "summary": "Get phone with given number",
+          "responses": {
+            "200": {
+              "description": "Phonebook is found",
+              "schema": {
+                "$ref": "#/definitions/Phonebook"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete phonebook with given number",
+          "tags": [
+            "Phonebooks"
+          ],
+          "responses": {
+            "200": {
+              "description": "Phonebook is deleted",
+              "schema": {
+                "$ref": "#/definitions/Phonebook"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update phone with given number",
+          "tags": [
+            "Phonebooks"
+          ],
+          "parameters": [
+            {
+              "name": "phonebook",
+              "in": "body",
+              "description": "Phonebook with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Phoneboko"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Phonebook is updated",
+              "schema": {
+                "$ref": "#/definitions/Phonebook"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Phonebook": {
+        "required": [
+          "name",
+          "type",
+          "number"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Phonebooks": {
+        "type": "array",
+        "$ref": "#/definitions/Phonebook"
+      }
+    }
+  }
