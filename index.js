@@ -1,6 +1,6 @@
 // Import packages
 const express = require('express')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json')
@@ -8,7 +8,7 @@ const swaggerDocument = require('./swagger.json')
 // App
 const app = express()
 // Morgan
-app.use(morgan('tiny'))
+// app.use(morgan('tiny'))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
